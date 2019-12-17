@@ -34,7 +34,7 @@ class SogouValidTester(ValidTester):
         try:
             test_url = TEST_URL_MAP[self.website]
             response = requests.get(test_url, cookies=cookies, timeout=5, allow_redirects=False)
-            if response.status_code == 200:
+            if response.status_code == 200 and "antispider" not in response.request.url and '请输入验证码' not in response.text:
                 print('Cookies有效', username)
             else:
                 print(response.status_code, response.headers)
