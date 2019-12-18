@@ -1,11 +1,11 @@
 # Redis数据库地址
-REDIS_HOST = 'localhost'
+REDIS_HOST = '192.168.2.222'
 
 # Redis端口
 REDIS_PORT = 6379
 
 # Redis密码，如无填None
-REDIS_PASSWORD = ''
+REDIS_PASSWORD = '12345678'
 
 # 产生器使用的浏览器
 BROWSER_TYPE = 'PhantomJS'

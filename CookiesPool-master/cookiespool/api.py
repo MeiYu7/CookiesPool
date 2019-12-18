@@ -1,11 +1,18 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import os
+import sys
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(BASE_DIR)
 import json
 from flask import Flask, g
-from cookiespool.config import *
 from cookiespool.db import *
 
 __all__ = ['app']
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def index():
