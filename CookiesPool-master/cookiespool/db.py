@@ -29,7 +29,10 @@ class RedisClient(object):
         :param value: 密码或Cookies
         :return:
         """
-        return self.db.hset(self.name(), username, value)
+        ret = self.db.hset(self.name(), username, value)
+        if self.count() > REDIS_EXPIRE_MAX:
+            self.db.expire(self.name(), 10)
+        return ret
 
     def get(self, username):
         """
@@ -78,6 +81,6 @@ class RedisClient(object):
 
 if __name__ == '__main__':
     conn = RedisClient('cookie', 'sogou')
-    # result = conn.set('hell2o', 'sss3s')
-    result = conn.count()
-    print(result)
+    result = conn.set('hell20', 'ss3s')
+    result1 = conn.count()
+    print(result1)

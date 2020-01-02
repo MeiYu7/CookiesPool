@@ -1,10 +1,12 @@
 # Redis数据库地址
 REDIS_HOST = '192.168.2.222'
+# REDIS_HOST = 'localhost'
 
 # Redis端口
 REDIS_PORT = 6379
 
 # Redis密码，如无填None
+# REDIS_PASSWORD = ''
 REDIS_PASSWORD = '12345678'
 
 # 产生器使用的浏览器
@@ -29,11 +31,11 @@ TEST_URL_MAP = {
 }
 
 # 产生器和验证器循环周期
-CYCLE = 60*3
+CYCLE = 60*5
 
 # API地址和端口
 API_HOST = 'localhost'
-API_PORT = 5000
+API_PORT = 5022
 
 # 产生器开关，模拟登录添加Cookies
 GENERATOR_PROCESS = True
@@ -41,3 +43,6 @@ GENERATOR_PROCESS = True
 VALID_PROCESS = True
 # API接口服务
 API_PROCESS = True
+
+# redis存储数量
+REDIS_EXPIRE_MAX = 3000
