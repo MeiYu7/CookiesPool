@@ -31,26 +31,28 @@ class SogouValidTester(ValidTester):
         ValidTester.__init__(self, website)
 
     def test(self, username, cookies):
-        print('正在测试Cookies', '时间用户名', username)
+        # print('正在测试Cookies', '时间用户名', username)
         try:
             cookies = json.loads(cookies)
         except TypeError:
-            print('Cookies不合法', username)
+            # print('Cookies不合法', username)
             self.cookies_db.delete(username)
-            print('删除Cookies', username)
+            # print('删除Cookies', username)
             return
         try:
             test_url = TEST_URL_MAP[self.website]
             response = requests.get(test_url, cookies=cookies, timeout=5, allow_redirects=False)
             if response.status_code == 200 and "antispider" not in response.request.url and '请输入验证码' not in response.text:
-                print('Cookies有效', username)
+                # print('Cookies有效', username)
+                pass
             else:
                 print(response.status_code, response.headers)
-                print('Cookies失效', username)
+                # print('Cookies失效', username)
                 self.cookies_db.delete(username)
-                print('删除Cookies', username)
+                # print('删除Cookies', username)
         except ConnectionError as e:
             print('发生异常', e.args)
+            raise e.args
 
 
 if __name__ == '__main__':

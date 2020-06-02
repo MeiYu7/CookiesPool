@@ -85,14 +85,15 @@ class CookiesGenerator(object):
         :return:
         """
         time_username = time.strftime('%Y%m%d%H%M%S', time.localtime())
-        print('正在生成Cookies', '时间账号', time_username)
+        # print('正在生成Cookies', '时间账号', time_username)
         result = self.new_cookies(time_username)
         # 成功获取
         if result.get('status') == 1:
             cookies = self.process_cookies(result.get('content'))
-            print('成功获取到Cookies', cookies)
+            # print('成功获取到Cookies', cookies)
             if self.cookies_db.set(time_username, json.dumps(cookies)):
-                print('成功保存Cookies')
+                # print('成功保存Cookies')
+                pass
 
     def close(self):
         """
@@ -100,11 +101,12 @@ class CookiesGenerator(object):
         :return:
         """
         try:
-            print('Closing Browser')
+            # print('Closing Browser')
             self.browser.close()
             del self.browser
         except TypeError:
-            print('Browser not opened')
+            # print('Browser not opened')
+            raise Exception("Browser not opened")
 
 
 class SogouCookiesGenerator(CookiesGenerator):
