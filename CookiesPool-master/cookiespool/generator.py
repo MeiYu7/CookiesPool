@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+import platform
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(BASE_DIR)
@@ -37,8 +38,13 @@ class CookiesGenerator(object):
             caps = DesiredCapabilities.PHANTOMJS
             caps[
                 "phantomjs.page.settings.userAgent"] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
-            self.browser = webdriver.PhantomJS(desired_capabilities=caps,
+            if platform.system() == 'Windows':
+                self.browser = webdriver.PhantomJS(desired_capabilities=caps,
                                                executable_path=r'F:/PhantomJs/phantomjs-2.1.1-windows/bin/phantomjs.exe')
+            if platform.system() == 'Linux':
+                self.browser = webdriver.PhantomJS(desired_capabilities=caps,
+                                               executable_path = r'/opt/phantomjs-2.1.1-linux-x86_64/bin/phantomjs')
+
             self.browser.set_window_size(1400, 500)
         elif BROWSER_TYPE == 'Chrome':
             # Chrome浏览器
